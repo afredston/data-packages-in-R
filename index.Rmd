@@ -65,6 +65,9 @@ style_duo_accent(
 
 # How data packages work
 
+Some small data files are stored directly in the package
+
+An *Application Programming Interface (API)* allows two machines (like your R application and a remote server) to communicate
 
 ---
 
