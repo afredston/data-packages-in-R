@@ -1,0 +1,169 @@
+---
+title: "Data packages in R"
+subtitle: "Statistical Programming"
+author: 
+  - "Alexa Fredston"
+date: 'January 2022'
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+seal: false
+---
+<style>
+.title-slide {
+vertical-align: bottom !important; 
+text-align: left !important;
+}
+</style>
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+library(tweetrmd) 
+style_duo_accent(
+  primary_color = "#EBB59F",
+  secondary_color = "#0B1B32",
+  text_color = "#0B1B32",
+  inverse_header_color = "#0B1B32",
+  title_slide_text_color="#0B1B32",
+  link_color = "#EBB59F",
+  header_font_google = google_font("Cardo"),
+  text_font_google = google_font("Work Sans"),
+  code_font_google = google_font("Fira Mono")
+)
+```
+
+---
+
+# What is a package? 
+
+---
+
+# What is a data package? 
+
+---
+
+# How data packages work
+
+
+---
+
+# Advantages of data packages
+
+Strengthen reproducibility by making the data import process part of your code
+
+Avoid errors from importing data incorrectly or using the wrong source data
+
+Facilitate collaborators accessing and working with source data
+
+---
+
+# Simple data packages
+
+### Useful for instruction and reproducible examples 
+
+* [gapminder](https://github.com/jennybc/gapminder)
+* [palmerpenguins](https://github.com/allisonhorst/palmerpenguins/)
+
+---
+
+# Environmental data packages
+
+Most of the ones I use regularly are from [ROpenSci]()
+
+### Some favorites
+
+* [rnaturalearth](https://github.com/ropensci/rnaturalearth)
+* [rgbif]
+* [rerddap](https://github.com/ropensci/rerddap)
+* [FishData](https://github.com/James-Thorson/FishData)
+
+---
+
+# rerddap
+
+```{r, message=FALSE, echo=TRUE}
+library(rerddap)
+library(raster)
+grid_out <- griddap("ncdcOisst2Agg_LonPM180", time=c("2020-03-10","2020-03-17"), latitude = c(39, 41), longitude = c(-74.5, -73.5), fields="sst")
+grid_brick <- brick(grid_out$summary$filename)
+plot(grid_brick)
+```
+
+---
+
+# rnaturalearth
+
+```{r, message=FALSE, echo=TRUE}
+library(rnaturalearth)
+plot(ne_coastline())
+```
+
+---
+
+# rgbif
+
+```{r, message=FALSE, echo=TRUE}
+library(rgbif)
+name <- name_suggest(q="Balaenoptera musculus")
+name
+key <- name$data$key[1]
+occ_count(taxonKey=key, georeferenced=TRUE)
+```
+
+---
+
+# Where to find them
+
+[ROpenSci list](https://ropensci.org/packages/data-access/)
+
+## Not all open datasets are in packages!
+
+* [Awesome Public Datasets](https://github.com/awesomedata/awesome-public-datasets)
+* [Ecological Data Wiki](https://ecologicaldata.org/)
+* [OpenTraits](http://opentraits.org/)
+* [Continuous Plankton Recorder](https://www.cprsurvey.org/data/our-data/)
+* [Envirem](http://envirem.github.io/)
+* [BioTime](https://biotime.st-andrews.ac.uk/)
+
+---
+
+# Caveats
+
+Beware updates / versions (e.g., gapminder)
+
+Can be buggy; check the GitHub Issues
+
+Be mindful of data provenance 
+
+Cite them, please!  `citation(package = 'rerddap')`
+
+---
+
+# Take-home messages
+
+Data packages are a great way to make analysis easier and more reproducible 
+
+Take a step back and check major R resources before spending a lot of time searching for or customizing anything
+
+
