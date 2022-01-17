@@ -55,6 +55,15 @@ style_duo_accent(
 
 ---
 
+# Some course organization 
+
+* Course communication will mostly be on Teams
+* Please reach out to me to organize a session to present
+* I am happy to go over your materials and ideas with you in advance (optional but highly recommended)
+* I unfortunately have to miss a few sessions (see syllabus)
+
+---
+
 # What is a package? 
 
 ---
